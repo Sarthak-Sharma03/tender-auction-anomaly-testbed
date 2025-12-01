@@ -85,7 +85,7 @@ Multiple detectors are combined into a single **ensemble anomaly score**:
 
 1. Clone the repository:
 
-    git clone https://github.com/your-username/tender-auction-anomaly-testbed.git
+    git clone https://github.com/sarthak-sharma03/tender-auction-anomaly-testbed.git
     cd tender-auction-anomaly-testbed
 
 2. (Optional) Create and activate a virtual environment:
