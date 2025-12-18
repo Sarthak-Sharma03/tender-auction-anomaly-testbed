@@ -1,0 +1,8 @@
+cmd: quickstart
+data_path: data/Login_Data.xlsx
+out_dir: reports/quickstart
+budgets: [0.005, 0.01, 0.05]
+time_split: 0.7
+random_state: 13
+synthetic: false
+ensemble_method: fisher

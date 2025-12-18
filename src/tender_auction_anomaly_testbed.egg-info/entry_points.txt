@@ -1,0 +1,2 @@
+[console_scripts]
+tad = tad.cli:main

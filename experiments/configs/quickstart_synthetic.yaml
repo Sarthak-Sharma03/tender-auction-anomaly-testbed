@@ -1,0 +1,7 @@
+cmd: quickstart
+out_dir: reports/quickstart_synthetic
+budgets: [0.005, 0.01, 0.05]
+time_split: 0.7
+random_state: 13
+synthetic: true
+ensemble_method: fisher

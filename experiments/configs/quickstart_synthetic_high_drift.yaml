@@ -1,0 +1,14 @@
+cmd: quickstart
+out_dir: reports/quickstart_synthetic_high_drift
+budgets: [0.005, 0.01, 0.05]
+time_split: 0.7
+random_state: 13
+synthetic: true
+ensemble_method: fisher
+synthetic_cfg:
+  n_users: 400
+  days: 60
+  mean_events_per_user_per_day: 5.5
+  anomaly_rate: 0.03
+  drift_day: 35
+  random_state: 13

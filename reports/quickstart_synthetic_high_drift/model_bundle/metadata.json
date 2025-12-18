@@ -1,0 +1,36 @@
+{
+  "budgets": [
+    0.005,
+    0.01,
+    0.05
+  ],
+  "created_by": "tad quickstart",
+  "ensemble_members": [
+    "robust_z",
+    "isolation_forest",
+    "one_class_svm",
+    "local_outlier_factor"
+  ],
+  "ensemble_method": "fisher",
+  "feature_columns": [
+    "events",
+    "failed_events",
+    "failed_rate",
+    "unique_ips",
+    "unique_countries",
+    "unique_devices",
+    "unique_browsers",
+    "unique_hours",
+    "duration_sec",
+    "events_per_hour",
+    "failed_per_hour",
+    "unique_ip_rate",
+    "unique_country_rate",
+    "unique_device_rate",
+    "unique_browser_rate",
+    "unique_hour_rate"
+  ],
+  "primary_ensemble": "ensemble_fisher",
+  "time_split": 0.7,
+  "version": "0.7.0"
+}

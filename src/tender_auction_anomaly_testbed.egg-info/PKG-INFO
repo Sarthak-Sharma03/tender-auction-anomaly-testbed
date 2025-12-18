@@ -1,0 +1,85 @@
+Metadata-Version: 2.4
+Name: tender-auction-anomaly-testbed
+Version: 0.6.1
+Summary: Decision-centric anomaly detection testbed (alert budgets, drift) with a small production-style reference pipeline.
+Author: Sarthak Sharma
+License: MIT
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy>=1.24
+Requires-Dist: pandas>=2.0
+Requires-Dist: scikit-learn>=1.3
+Requires-Dist: joblib>=1.3
+Requires-Dist: openpyxl>=3.1
+Requires-Dist: matplotlib>=3.8
+Requires-Dist: pyyaml>=6.0
+Provides-Extra: dev
+Requires-Dist: pytest>=8.0; extra == "dev"
+Requires-Dist: ruff>=0.5; extra == "dev"
+Requires-Dist: reportlab>=4.0; extra == "dev"
+Provides-Extra: api
+Requires-Dist: fastapi>=0.110; extra == "api"
+Requires-Dist: uvicorn>=0.23; extra == "api"
+Requires-Dist: pydantic>=2.0; extra == "api"
+Dynamic: license-file
+
+# tender-auction-anomaly-testbed
+
+Decision-centric anomaly detection testbed for tender/auction event streams, packaged as a reviewer-friendly ML systems artifact.
+
+NDA note: the production tender/auction data and rules are under NDA. This public repo uses an anonymized, login-like
+surrogate dataset plus a synthetic generator so the full pipeline stays reproducible. See `docs/DOMAIN_CONTEXT.md` for
+the field mapping and rationale.
+
+If you are reviewing quickly, start with `docs/TECHNICAL_REPORT.pdf`, then `docs/REVIEWER_GUIDE.md`.
+
+## What this artifact shows
+
+- End-to-end pipeline: load -> validate -> sessionize -> feature matrix -> unsupervised baselines -> ensemble -> reports
+- Decision-centric evaluation under fixed review budgets (precision/recall at budget)
+- Time-split drift summary (PSI + KS) and train -> test threshold transfer
+- Reproducible tooling: package layout, CLI, tests, CI, config-driven runs
+- Inspectable model bundle and a tiny reference scoring API (FastAPI)
+
+## Quickstart (2-5 minutes)
+
+```bash
+python -m pip install -e ".[dev]"
+pytest -q
+tad quickstart --out-dir reports/quickstart  # default ensemble=fisher (calibrated)
+```
+
+Outputs land in `reports/quickstart/` (report, metrics, drift, plots, and a model bundle).
+
+### No data? Use synthetic
+
+```bash
+tad quickstart --synthetic --out-dir reports/quickstart_synthetic
+```
+
+## Experiments and ablations
+
+```bash
+tad run-config experiments/configs/quickstart_sample.yaml
+tad run-config experiments/configs/quickstart_synthetic.yaml
+tad run-config experiments/configs/quickstart_synthetic_high_drift.yaml
+```
+
+See `docs/EXPERIMENTS.md` for config notes and the ablation set used in the report.
+
+## Reference API (optional)
+
+```bash
+python -m pip install -e ".[api]"
+tad serve-api --bundle reports/quickstart/model_bundle --port 8000
+```
+
+## Notes
+
+- Quickstart uses a proxy risk signal so the evaluation harness is concrete; see `docs/TECHNICAL_REPORT.md`.
+- The goal is an inspectable workflow and engineering quality, not a claim of SOTA accuracy.
+
+## Legacy material
+
+The original demo/UI and older artifacts are preserved under `legacy/`.
