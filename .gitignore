@@ -1,0 +1,22 @@
+# python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.dist-info/
+.venv/
+venv/
+
+# tooling
+.pytest_cache/
+.ruff_cache/
+
+# outputs
+reports/
+*.joblib
+
+# big/legacy artifacts
+legacy/original/**/*.rar
+legacy/original/**/*.pkl
+legacy/original/**/*.pdf
